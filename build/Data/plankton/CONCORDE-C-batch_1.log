@@ -1,0 +1,87 @@
+Network type 3 - fractional max-pooling network
+Layers of pooling:       12
+Dropout multiplier:      0.375
+Start epoch:             399
+Stop epoch:              399
+Exemplars/class/epoch:   1000
+Initial learning rate:   0.003
+Learning rate decay:     0.01
+Batch size:              350
+Momentum:                0.999
+Area threshold:          4000
+Training data directory: /data/plankton_data/learningset/CON_train_c/concorde_library_bigcam_04112017_c
+Unlabeled data:          /data/CreateBatches/results_images/CONCORDE/C/batch_1
+Wildcard:                *.*
+Cache training images:   true
+Experiment name:         weights/plankton
+Validation set size:     0%
+
+Loading training set...
+Name:            /data/plankton_data/learningset/CON_train_c/concorde_library_bigcam_04112017_c
+Type:            TRAINBATCH
+nFeatures:       1
+nPictures:       45609
+nClasses:        188
+nPictures/class: 28 16 310 309 188 444 329 138 175 270 317 729 624 250 1566 485 394 51 32 120 216 46 320 53 326 575 48 229 79 166 104 59 167 49 170 29 60 360 795 147 14 205 91 1 2 63 110 43 43 211 28 189 77 33 1233 89 147 41 127 58 85 164 236 249 6 877 46 72 90 362 210 20 41 464 306 89 110 110 181 71 83 17 55 474 263 517 111 1500 303 81 301 110 111 53 18 250 2 763 138 14 23 1194 1444 47 434 179 31 1 1241 134 56 260 125 7 11 111 3 1 68 272 566 14 81 32 280 277 352 255 119 215 14 465 296 223 218 376 262 35 161 543 684 11 61 4 679 5 218 18 275 396 309 342 994 263 62 227 471 25 197 468 11 74 14 169 54 5 494 138 21 688 551 414 18 114 195 12 236 167 670 643 303 545 165 153 552 418 4 115
+
+Create network:
+*3 Tesla K80 12287MB Compute capability: 3.7
+ 4 Tesla K80 12287MB Compute capability: 3.7
+Sparse CNN - dimension=2 nInputFeatures=1 nClasses=188
+0:Convolution 2^2x1->4
+1:Learn 4->32 dropout=0 VeryLeakyReLU
+2:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+3:Convolution 2^2x32->128
+4:Learn 128->64 dropout=0 VeryLeakyReLU
+5:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+6:Convolution 2^2x64->256
+7:Learn 256->96 dropout=0 VeryLeakyReLU
+8:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+9:Convolution 2^2x96->384
+10:Learn 384->128 dropout=0 VeryLeakyReLU
+11:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+12:Convolution 2^2x128->512
+13:Learn 512->160 dropout=0 VeryLeakyReLU
+14:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+15:Convolution 2^2x160->640
+16:Learn 640->192 dropout=0 VeryLeakyReLU
+17:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+18:Convolution 2^2x192->768
+19:Learn 768->224 dropout=0 VeryLeakyReLU
+20:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+21:Convolution 2^2x224->896
+22:Learn 896->256 dropout=0 VeryLeakyReLU
+23:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+24:Convolution 2^2x256->1024
+25:Learn 1024->288 dropout=0 VeryLeakyReLU
+26:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+27:Convolution 2^2x288->1152
+28:Learn 1152->320 dropout=0 VeryLeakyReLU
+29:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+30:Convolution 2^2x320->1280
+31:Learn 1280->352 dropout=0 VeryLeakyReLU
+32:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+33:Convolution 2^2x352->1408
+34:Learn 1408->384 dropout=0 VeryLeakyReLU
+35:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+36:Convolution 2^2x384->1536
+37:Learn 1536->416 dropout=0 VeryLeakyReLU
+38:TerminalPooling 32 1024
+39:Learn 416->448 dropout=0 VeryLeakyReLU
+40:Learn 448->188 dropout=0 Softmax Classification
+Spatially sparse CNN with layer sizes: 1-(TP)-32-(C2)-33-(POFMP)-47-(C2)-48-(POFMP)-68-(C2)-69-(POFMP)-98-(C2)-99-(POFMP)-140-(C2)-141-(POFMP)-199-(C2)-200-(POFMP)-283-(C2)-284-(POFMP)-402-(C2)-403-(POFMP)-570-(C2)-571-(POFMP)-808-(C2)-809-(POFMP)-1144-(C2)-1145-(POFMP)-1619-(C2)-1620-(POFMP)-2291-(C2)-2292
+Input-field dimensions = 2292x2292
+
+Loading network parameters from weights/plankton_epoch-399.cnn
+Loading testing set...
+Name:            /data/CreateBatches/results_images/CONCORDE/C/batch_1
+Type:            UNLABELEDBATCH
+nFeatures:       1
+nPictures:       45607
+nClasses:        188
+./Data/plankton/CONCORDE-C-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/CONCORDE/C/batch_1 rep 1/24 Mistakes: 99.8224% NLL 27.865 MegaMultiplyAdds/sample:440 time:59s GigaMultiplyAdds/s:338 rate:770/s
+./Data/plankton/CONCORDE-C-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/CONCORDE/C/batch_1 rep 2/24 Mistakes: 99.8553% NLL 26.2769 MegaMultiplyAdds/sample:880 time:115s GigaMultiplyAdds/s:346 rate:393/s
+./Data/plankton/CONCORDE-C-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/CONCORDE/C/batch_1 rep 3/24 Mistakes: 99.8356% NLL 25.449 MegaMultiplyAdds/sample:1320 time:176s GigaMultiplyAdds/s:341 rate:259/s

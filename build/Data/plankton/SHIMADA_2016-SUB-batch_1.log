@@ -1,0 +1,129 @@
+Network type 3 - fractional max-pooling network
+Layers of pooling:       12
+Dropout multiplier:      0.375
+Start epoch:             400
+Stop epoch:              400
+Exemplars/class/epoch:   1000
+Initial learning rate:   0.003
+Learning rate decay:     0.01
+Batch size:              350
+Momentum:                0.999
+Area threshold:          4000
+Training data directory: /data/plankton_data/learningset/final/ostrich_training_lg_final_20160425
+Unlabeled data:          /data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1
+Wildcard:                *.*
+Cache training images:   true
+Experiment name:         weights/plankton
+Validation set size:     0%
+
+Loading training set...
+Name:            /data/plankton_data/learningset/final/ostrich_training_lg_final_20160425
+Type:            TRAINBATCH
+nFeatures:       1
+nPictures:       61570
+nClasses:        125
+nPictures/class: 1778 35 214 40 1051 1508 445 849 327 143 311 6235 104 61 168 108 347 230 287 40 207 580 311 228 878 65 1716 2485 759 89 92 110 92 23 223 101 122 72 3557 1092 1073 256 64 80 102 226 165 642 1252 32 1265 45 74 426 386 56 275 268 21 230 151 86 460 55 47 50 166 623 412 347 73 1472 236 1003 343 16 136 110 27 124 23 316 241 18 55 233 35 852 1476 47 1794 262 147 81 26 133 581 312 493 84 331 239 21 37 394 318 515 1482 72 273 57 75 1544 121 57 3892 1240 1635 725 489 154 153 57 34 488
+
+Create network:
+*3 Tesla K80 11519MB Compute capability: 3.7
+ 4 Tesla K80 11519MB Compute capability: 3.7
+Sparse CNN - dimension=2 nInputFeatures=1 nClasses=125
+0:Convolution 2^2x1->4
+1:Learn 4->32 dropout=0 VeryLeakyReLU
+2:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+3:Convolution 2^2x32->128
+4:Learn 128->64 dropout=0 VeryLeakyReLU
+5:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+6:Convolution 2^2x64->256
+7:Learn 256->96 dropout=0 VeryLeakyReLU
+8:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+9:Convolution 2^2x96->384
+10:Learn 384->128 dropout=0 VeryLeakyReLU
+11:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+12:Convolution 2^2x128->512
+13:Learn 512->160 dropout=0 VeryLeakyReLU
+14:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+15:Convolution 2^2x160->640
+16:Learn 640->192 dropout=0 VeryLeakyReLU
+17:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+18:Convolution 2^2x192->768
+19:Learn 768->224 dropout=0 VeryLeakyReLU
+20:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+21:Convolution 2^2x224->896
+22:Learn 896->256 dropout=0 VeryLeakyReLU
+23:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+24:Convolution 2^2x256->1024
+25:Learn 1024->288 dropout=0 VeryLeakyReLU
+26:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+27:Convolution 2^2x288->1152
+28:Learn 1152->320 dropout=0 VeryLeakyReLU
+29:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+30:Convolution 2^2x320->1280
+31:Learn 1280->352 dropout=0 VeryLeakyReLU
+32:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+33:Convolution 2^2x352->1408
+34:Learn 1408->384 dropout=0 VeryLeakyReLU
+35:Pseudorandom overlapping Fractional Max Pooling 1.41421 2
+36:Convolution 2^2x384->1536
+37:Learn 1536->416 dropout=0 VeryLeakyReLU
+38:TerminalPooling 32 1024
+39:Learn 416->448 dropout=0 VeryLeakyReLU
+40:Learn 448->125 dropout=0 Softmax Classification
+Spatially sparse CNN with layer sizes: 1-(TP)-32-(C2)-33-(POFMP)-47-(C2)-48-(POFMP)-68-(C2)-69-(POFMP)-98-(C2)-99-(POFMP)-140-(C2)-141-(POFMP)-199-(C2)-200-(POFMP)-283-(C2)-284-(POFMP)-402-(C2)-403-(POFMP)-570-(C2)-571-(POFMP)-808-(C2)-809-(POFMP)-1144-(C2)-1145-(POFMP)-1619-(C2)-1620-(POFMP)-2291-(C2)-2292
+Input-field dimensions = 2292x2292
+
+Loading network parameters from weights/plankton_epoch-400.cnn
+Loading testing set...
+Name:            /data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1
+Type:            UNLABELEDBATCH
+nFeatures:       1
+nPictures:       2000748
+nClasses:        125
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 1/24 Mistakes: 99.9852% NLL 28.5825 MegaMultiplyAdds/sample:268 time:1839s GigaMultiplyAdds/s:292 rate:1088/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 2/24 Mistakes: 99.9914% NLL 26.7384 MegaMultiplyAdds/sample:537 time:3304s GigaMultiplyAdds/s:325 rate:606/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 3/24 Mistakes: 99.992% NLL 25.7477 MegaMultiplyAdds/sample:805 time:4682s GigaMultiplyAdds/s:344 rate:427/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 4/24 Mistakes: 99.9927% NLL 25.0994 MegaMultiplyAdds/sample:1074 time:6101s GigaMultiplyAdds/s:352 rate:328/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 5/24 Mistakes: 99.9936% NLL 24.6291 MegaMultiplyAdds/sample:1342 time:7597s GigaMultiplyAdds/s:353 rate:263/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 6/24 Mistakes: 99.9942% NLL 24.266 MegaMultiplyAdds/sample:1611 time:8991s GigaMultiplyAdds/s:358 rate:223/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 7/24 Mistakes: 99.9945% NLL 23.9756 MegaMultiplyAdds/sample:1880 time:10401s GigaMultiplyAdds/s:361 rate:192/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 8/24 Mistakes: 99.9942% NLL 23.737 MegaMultiplyAdds/sample:2148 time:11832s GigaMultiplyAdds/s:363 rate:169/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 9/24 Mistakes: 99.994% NLL 23.534 MegaMultiplyAdds/sample:2417 time:13265s GigaMultiplyAdds/s:364 rate:151/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 10/24 Mistakes: 99.9942% NLL 23.3573 MegaMultiplyAdds/sample:2685 time:14695s GigaMultiplyAdds/s:365 rate:136/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 11/24 Mistakes: 99.9944% NLL 23.2054 MegaMultiplyAdds/sample:2954 time:16101s GigaMultiplyAdds/s:367 rate:124/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 12/24 Mistakes: 99.9945% NLL 23.0694 MegaMultiplyAdds/sample:3222 time:17498s GigaMultiplyAdds/s:368 rate:114/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 13/24 Mistakes: 99.9946% NLL 22.9477 MegaMultiplyAdds/sample:3491 time:18887s GigaMultiplyAdds/s:369 rate:106/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 14/24 Mistakes: 99.9949% NLL 22.8396 MegaMultiplyAdds/sample:3760 time:20295s GigaMultiplyAdds/s:370 rate:99/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 15/24 Mistakes: 99.995% NLL 22.7398 MegaMultiplyAdds/sample:4028 time:21792s GigaMultiplyAdds/s:369 rate:92/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 16/24 Mistakes: 99.9949% NLL 22.6495 MegaMultiplyAdds/sample:4297 time:23238s GigaMultiplyAdds/s:369 rate:86/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 17/24 Mistakes: 99.9951% NLL 22.5658 MegaMultiplyAdds/sample:4565 time:24645s GigaMultiplyAdds/s:370 rate:81/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 18/24 Mistakes: 99.9951% NLL 22.489 MegaMultiplyAdds/sample:4834 time:26065s GigaMultiplyAdds/s:371 rate:77/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 19/24 Mistakes: 99.9949% NLL 22.4175 MegaMultiplyAdds/sample:5103 time:27446s GigaMultiplyAdds/s:371 rate:73/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 20/24 Mistakes: 99.9951% NLL 22.3505 MegaMultiplyAdds/sample:5371 time:28849s GigaMultiplyAdds/s:372 rate:69/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 21/24 Mistakes: 99.9949% NLL 22.2883 MegaMultiplyAdds/sample:5640 time:30232s GigaMultiplyAdds/s:373 rate:66/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 22/24 Mistakes: 99.9948% NLL 22.229 MegaMultiplyAdds/sample:5908 time:31609s GigaMultiplyAdds/s:374 rate:63/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 23/24 Mistakes: 99.9951% NLL 22.1732 MegaMultiplyAdds/sample:6177 time:33042s GigaMultiplyAdds/s:374 rate:61/s
+./Data/plankton/SHIMADA_2016-SUB-batch_1_plankton_predictions.csv
+/data/CreateBatches/results_images/SHIMADA_2016/SUB/batch_1 rep 24/24 Mistakes: 99.9952% NLL 22.1211 MegaMultiplyAdds/sample:6445 time:34433s GigaMultiplyAdds/s:374 rate:58/s
