@@ -1,5 +1,7 @@
 #include "NetworkArchitectures.h"
-
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "SpatiallySparseDatasetOpenCV.h"
 
 ////////////////////////////
@@ -360,9 +362,7 @@ Picture *OpenCVPicture::distort(RNG &rng, batchType type) {
 
 
 
-int main( int argc, char *argv[] ) {
-
-
+int main(int argc, char *argv[]) {
 
   //-------------------------------------------------------------------------
   // Options.
@@ -380,33 +380,20 @@ int main( int argc, char *argv[] ) {
   // Start and stop training epochs
   // Starting at epoch > 0 loads the weights from that epoch and continues
   // training until stop epoch
-
-  // If startEpoch==stopEpoch then just classify the unlabeledDataset
+  // If startEpoch == stopEpoch then just classify the unlabeledDataset
 
   int startEpoch = 400;
-
   int stopEpoch = 400;
-
   int exemplarsPerClassPerEpoch = 1000;
-
   float initialLearningRate = 0.003;
-
   float learningRateDecay = 0.01;
 
-
-
   // number of images that are fed to the card at a time larger numbers will
-
   // (marginally) increase training speed; increase according to GPU memory
-
   // If batchSize is small, make momentum closer to 1. Momentum increases the
-
   // effective batch size to batchSize * 1/(1 - momentum); that should cover
-
   // the diversity of the training set
-
   int batchSize = 350;
-
   float momentum = 0.999;
 
 
@@ -541,10 +528,7 @@ int main( int argc, char *argv[] ) {
 
   case 1:
 
-    std::cout << "Network type 1 - Ciresan-Schmidhuber-Meier style network"
-
-              << std::endl;
-
+    std::cout << "Network type 1 - Ciresan-Schmidhuber-Meier style network" << std::endl;
     break;
 
   case 2:
@@ -589,9 +573,7 @@ int main( int argc, char *argv[] ) {
 
   std::cout << "Wildcard:                " << wildcard << std::endl;
 
-  std::cout << "Cache training images:   "
-
-            << (loadImagesIntoMemory ? "true" : "false") << std::endl;
+  std::cout << "Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
 
   std::cout << "Experiment name:         " << baseName << std::endl;
 
@@ -665,9 +647,8 @@ int main( int argc, char *argv[] ) {
 
   std::cout << "Create network:" << std::endl;
 
-  PlanktonSparseConvNet cnn(nFeatures, nClasses, networkType, nLayers,
-
-                            dropoutMultiplier, cudaDevice);
+  PlanktonSparseConvNet cnn(nFeatures, nClasses, networkType, nLayers, dropoutMultiplier, cudaDevice);
+  
 
   std::cout << std::endl;
 
