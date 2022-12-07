@@ -126,8 +126,7 @@ public:
 // Method to distort and scale input images
 // used for data augmentation and to limit GPU memory usage
 
-float areaThreshold; // global variable, set below, threshold for reducing image
-                     // size
+float areaThreshold; // global variable, set below, threshold for reducing image size
 int openCVflag;      // 0 for grayscale, >0 for color
 
 Picture *OpenCVPicture::distort(RNG &rng, batchType type) {
@@ -230,8 +229,7 @@ int main(int argc, char *argv[]) {
       "Data/plankton/train";
   // There should be a file trainDataDir + "/classList" containing a list of
   // the classes, one per line, and a directory trainDataDir + className for
-  // each
-  // class.
+  // each class.
 
   // Unlabeled data to classify. Empty if just training.
   std::string unlabeledDataDir =
@@ -332,9 +330,9 @@ int main(int argc, char *argv[]) {
   std::cout << "Wildcard:                " << wildcard << std::endl;
   std::cout << "Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
   std::cout << "Experiment name:         " << baseName << std::endl;
-  std::cout << "Validation set size:     " << validationSetPercentage * 100
-            << "%" << std::endl;
+  std::cout << "Validation set size:     " << validationSetPercentage * 100 << "%" << std::endl;
   std::cout << std::endl;
+
   //-------------------------------------------------------------------------
   // Training and using the network
   //-------------------------------------------------------------------------
@@ -344,15 +342,15 @@ int main(int argc, char *argv[]) {
     // Load training data and/or count classes
     std::cout << "Loading training set...\n";
     trainSet = OpenCVLabeledDataSet(
-        "Data/plankton/classList",   // path to list of classes
-        trainDataDir,		     // path to data
-        wildcard,                    // wildcard for images
-        TRAINBATCH,                  // type of dataset
-        255, // background grey level (tolerance +/- 2 set in
-             // OpenCVPicture.cpp)
+        "Data/plankton/classList",  // path to list of classes
+        trainDataDir,		            // path to data
+        wildcard,                   // wildcard for images
+        TRAINBATCH,                 // type of dataset
+        255,                        // background grey level (tolerance +/- 2 set in OpenCVPicture.cpp)
         loadImagesIntoMemory,
         openCVflag // flag to OpenCV imread() function call
         );
+
     trainSet.summary();
     std::cout << std::endl;
     nClasses = trainSet.nClasses;
@@ -409,8 +407,7 @@ int main(int argc, char *argv[]) {
           batchSize,        // number of images to feed to the GPU at a time
           3,                // number of repetitions of the prediction
           baseName + "/validation_predictions.csv", // file name for predictions
-          baseName +
-              "/validation_confusion.csv" // file name for confusion matrix
+          baseName + "/validation_confusion.csv" // file name for confusion matrix
           );
     }
   }
@@ -423,6 +420,7 @@ int main(int argc, char *argv[]) {
         false,     // no point preloading images during testing
         openCVflag // flag to OpenCV imread() function call
         );
+        
     testSet.summary();
     // predict test set with repeat testing
     std::string flattened_unlabeled = unlabeledDataDir.substr(unlabeledDataDir.find("results_images") + 30);
