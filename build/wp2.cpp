@@ -37,8 +37,7 @@ public:
   PlanktonSparseConvNet(
       int nInputFeatures, int nClasses,
       int networkType, // 1, 2 or 3, as above
-      int nLayers,     // number of layers of max-pooling (i.e. 5 or 6 for
-                       // network types 1 and 2, 10 or 12 for type 2)
+      int nLayers,     // number of layers of max-pooling (i.e. 5 or 6 for network types 1 and 2, 10 or 12 for type 2)
       int dropoutMultiplier = 0.375, // number between 0 and 0.5. Dropout can reduce
                                  // over-fitting when training data is limited.
                                  // An increasing amount of dropout is used
