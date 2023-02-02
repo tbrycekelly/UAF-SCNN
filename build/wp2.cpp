@@ -278,36 +278,29 @@ int main(int argc, char *argv[]) {
     std::string arg_next = argv[i+1];
     if (arg_current == "-startEpoch" || arg_current == "-start" ) { 
       startEpoch = std::stoi(arg_next); 
-    }
-    else if (arg_current == "-stopEpoch" || arg_current == "-stop" ) { 
+    } else if (arg_current == "-stopEpoch" || arg_current == "-stop" ) { 
       stopEpoch = std::stoi(arg_next); 
-    }
-    else if (arg_current == "-batchSize" || arg_current == "-bs" ) { 
+    } else if (arg_current == "-batchSize" || arg_current == "-bs" ) { 
       batchSize = std::stoi(arg_next); 
-    }
-    else if (arg_current == "-trainDataDir" || arg_current == "-train" ) { 
+    } else if (arg_current == "-trainDataDir" || arg_current == "-train" ) { 
       trainDataDir = arg_next; 
-    }
-    else if (arg_current == "-unlabeledDataDir" || arg_current == "-unl" ) { 
+    } else if (arg_current == "-unlabeledDataDir" || arg_current == "-unl" ) { 
       unlabeledDataDir = arg_next; 
-    }
-    else if (arg_current == "-nClasses" || arg_current == "-nc" ) { 
+    } else if (arg_current == "-nClasses" || arg_current == "-nc" ) { 
       nClasses = std::stoi(arg_next); 
-    }
-    else if (arg_current == "-exemplarsPerClassPerEpoch" || arg_current == "-epcpe" ) { 
+    } else if (arg_current == "-exemplarsPerClassPerEpoch" || arg_current == "-epcpe" ) { 
       exemplarsPerClassPerEpoch = std::stoi(arg_next); 
-    }
-    else if (arg_current == "-initialLearningRate" || arg_current == "-ilr" ) { 
+    } else if (arg_current == "-initialLearningRate" || arg_current == "-ilr" ) { 
       initialLearningRate = std::stof(arg_next); 
-    }
-    else if (arg_current == "-learningRateDecay" || arg_current == "-lrd" ) { 
+    } else if (arg_current == "-learningRateDecay" || arg_current == "-lrd" ) { 
       learningRateDecay = std::stof(arg_next); 
-    }
-    else if (arg_current == "-validationSetPercentage" || arg_current == "-vsp" ) { 
+    } else if (arg_current == "-validationSetPercentage" || arg_current == "-vsp" ) { 
       validationSetPercentage = std::stof(arg_next); 
-    }
-    else if (arg_current == "-cudaDevice" || arg_current == "-cD" ) { 
+    } else if (arg_current == "-cudaDevice" || arg_current == "-cD" ) { 
       cudaDevice = std::stoi(arg_next); 
+    } else {
+      std::cout << "WARNING: arguemnt " << arg_current << " " << arg_next << " is unrecognized!" << std::endl;
+      return(0);
     }
 }
 
@@ -437,6 +430,7 @@ int main(int argc, char *argv[]) {
         );
         
     testSet.summary();
+
     // predict test set with repeat testing
     std::string flattened_unlabeled = unlabeledDataDir.substr(unlabeledDataDir.find("results_images") + 30);
     for (int i =0; i < flattened_unlabeled.length(); i++){ 
