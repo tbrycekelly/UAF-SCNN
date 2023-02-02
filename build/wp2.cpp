@@ -258,18 +258,18 @@ int main(int argc, char *argv[]) {
   // validationSetPercentage=0 to make full use of the trainingSet
 
   if (argc == 0) {
-    std::cout << "Availalbe CLI arguments are: " << std::endl
-    std::cout << "    -start NUM" << std::endl
-    std::cout << "    -stop NUM" << std::endl
-    std::cout << "    -batchSize NUM" << std::endl
-    std::cout << "    -train DIR" << std::endl
-    std::cout << "    -unl DIR" << std::endl
-    std::cout << "    -nClasses NUM" << std::endl
-    std::cout << "    -exemplarsPerClassPerEpoch NUM" << std::endl
-    std::cout << "    -initialLearningRate NUM" << std::endl
-    std::cout << "    -learningRateDecay NUM" << std::endl
-    std::cout << "    -validationSetPercentage NUM" << std::endl
-    std::cout << "    -cudaDevice NUM" << std::endl
+    std::cout << "Availalbe CLI arguments are: " << std::endl;
+    std::cout << "    -start NUM" << std::endl;
+    std::cout << "    -stop NUM" << std::endl;
+    std::cout << "    -batchSize NUM" << std::endl;
+    std::cout << "    -train DIR" << std::endl;
+    std::cout << "    -unl DIR" << std::endl;
+    std::cout << "    -nClasses NUM" << std::endl;
+    std::cout << "    -exemplarsPerClassPerEpoch NUM" << std::endl;
+    std::cout << "    -initialLearningRate NUM" << std::endl;
+    std::cout << "    -learningRateDecay NUM" << std::endl;
+    std::cout << "    -validationSetPercentage NUM" << std::endl;
+    std::cout << "    -cudaDevice NUM" << std::endl;
 
     return(0)
   }
