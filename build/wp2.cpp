@@ -224,8 +224,7 @@ int main(int argc, char *argv[]) {
   areaThreshold = 4000; // global variable
 
   // Path to data directory.
-  std::string trainDataDir =
-      "Data/plankton/train";
+  std::string trainDataDir = "Data/plankton/train";
   // There should be a file trainDataDir + "/classList" containing a list of
   // the classes, one per line, and a directory trainDataDir + className for
   // each class.
@@ -257,6 +256,24 @@ int main(int argc, char *argv[]) {
   // For best results, first run with a 20% validation set, and then when
   // you are happy with the other settings, re-train with
   // validationSetPercentage=0 to make full use of the trainingSet
+
+  if (argc == 0) {
+    std::cout << "Availalbe CLI arguments are: " << std::endl
+    std::cout << "    -start NUM" << std::endl
+    std::cout << "    -stop NUM" << std::endl
+    std::cout << "    -batchSize NUM" << std::endl
+    std::cout << "    -train DIR" << std::endl
+    std::cout << "    -unl DIR" << std::endl
+    std::cout << "    -nClasses NUM" << std::endl
+    std::cout << "    -exemplarsPerClassPerEpoch NUM" << std::endl
+    std::cout << "    -initialLearningRate NUM" << std::endl
+    std::cout << "    -learningRateDecay NUM" << std::endl
+    std::cout << "    -validationSetPercentage NUM" << std::endl
+    std::cout << "    -cudaDevice NUM" << std::endl
+
+    return(0)
+  }
+
   for (int i = 1; i < (argc-1); ++i) {
     std::string arg_current = argv[i];
     std::string arg_next = argv[i+1];
@@ -317,8 +334,7 @@ int main(int argc, char *argv[]) {
   std::cout << "Dropout multiplier:      " << dropoutMultiplier << std::endl;
   std::cout << "Start epoch:             " << startEpoch << std::endl;
   std::cout << "Stop epoch:              " << stopEpoch << std::endl;
-  std::cout << "Exemplars/class/epoch:   " << exemplarsPerClassPerEpoch
-            << std::endl;
+  std::cout << "Exemplars/class/epoch:   " << exemplarsPerClassPerEpoch << std::endl;
   std::cout << "Initial learning rate:   " << initialLearningRate << std::endl;
   std::cout << "Learning rate decay:     " << learningRateDecay << std::endl;
   std::cout << "Batch size:              " << batchSize << std::endl;
@@ -330,6 +346,7 @@ int main(int argc, char *argv[]) {
   std::cout << "Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
   std::cout << "Experiment name:         " << baseName << std::endl;
   std::cout << "Validation set size:     " << validationSetPercentage * 100 << "%" << std::endl;
+  std::cout << "CUDA Device:             " << cudaDevice << std::endl;
   std::cout << std::endl;
 
   //-------------------------------------------------------------------------
