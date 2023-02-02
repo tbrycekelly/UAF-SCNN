@@ -230,8 +230,7 @@ int main(int argc, char *argv[]) {
   // each class.
 
   // Unlabeled data to classify. Empty if just training.
-  std::string unlabeledDataDir =
-      "Data/plankton/test";
+  std::string unlabeledDataDir = "Data/plankton/test";
 
   std::string wildcard = "*.*";
   // Look for files in trainDataDir + "/" + classname + "/" + wildcard
@@ -257,7 +256,7 @@ int main(int argc, char *argv[]) {
   // you are happy with the other settings, re-train with
   // validationSetPercentage=0 to make full use of the trainingSet
 
-  if (argc == 0) {
+  if (argc == 1) {
     std::cout << "Availalbe CLI arguments are: " << std::endl;
     std::cout << "    -start NUM" << std::endl;
     std::cout << "    -stop NUM" << std::endl;
