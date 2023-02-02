@@ -271,7 +271,7 @@ int main(int argc, char *argv[]) {
     std::cout << "    -validationSetPercentage NUM" << std::endl;
     std::cout << "    -cudaDevice NUM" << std::endl;
 
-    return(0)
+    return(0);
   }
 
   for (int i = 1; i < (argc-1); ++i) {
