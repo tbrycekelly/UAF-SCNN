@@ -3,7 +3,8 @@ CFLAGS=--std=c++11 -O3
 #NVCC=$(which nvcc)
 NVCC=/usr/local/cuda/bin/nvcc
 #NVCCFLAGS=--std=c++11 -arch sm_20 -O3
-NVCCFLAGS=--std=c++11 -O3 -arch sm_37
+NVCCFLAGS=--std=c++11 -O3 -arch sm_37 -Wno-deprecated-gpu-targets
+
 OBJ=BatchProducer.o ConvolutionalLayer.o ConvolutionalTriangularLayer.o IndexLearnerLayer.o MaxPoolingLayer.o MaxPoolingTriangularLayer.o NetworkArchitectures.o NetworkInNetworkLayer.o NetworkInNetworkPReLULayer.o Picture.o Regions.o Rng.o SigmoidLayer.o SoftmaxClassifier.o SparseConvNet.o SparseConvNetCUDA.o SpatiallySparseBatch.o SpatiallySparseBatchInterface.o SpatiallySparseDataset.o SpatiallySparseLayer.o TerminalPoolingLayer.o readImageToMat.o types.o utilities.o vectorCUDA.o ReallyConvolutionalLayer.o vectorHash.o
 OBJCV=$(OBJ) OpenCVPicture.o SpatiallySparseDatasetOpenCV.o
 OBJCVT=$(OBJ) OpenCVTriangularPicture.o SpatiallySparseDatasetOpenCV.o
