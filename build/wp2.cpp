@@ -300,7 +300,6 @@ int main(int argc, char *argv[]) {
       cudaDevice = std::stoi(arg_next); 
     } else {
       std::cout << "WARNING: arguemnt " << arg_current << " " << arg_next << " is unrecognized!" << std::endl;
-      return(0);
     }
 }
 
