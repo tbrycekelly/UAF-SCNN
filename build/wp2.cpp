@@ -431,7 +431,7 @@ int main(int argc, char *argv[]) {
     testSet.summary();
 
     // predict test set with repeat testing
-    std::string flattened_unlabeled = unlabeledDataDir.substr(unlabeledDataDir.find("results_images") + 30);
+    std::string flattened_unlabeled = unlabeledDataDir;
     for (int i =0; i < flattened_unlabeled.length(); i++){ 
       if (flattened_unlabeled[i] == '/')
         flattened_unlabeled[i] = '-';
