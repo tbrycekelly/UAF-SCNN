@@ -187,6 +187,9 @@ Picture *OpenCVPicture::distort(RNG &rng, batchType type) {
 
 int main(int argc, char *argv[]) {
 
+  std::cout << "Starting SCNN V2023.08.11" << std::endl;
+  std::cout << "" << std::endl;
+
   //-------------------------------------------------------------------------
   // Options.
   //-------------------------------------------------------------------------
@@ -274,35 +277,47 @@ int main(int argc, char *argv[]) {
     return(0);
   }
 
-  for (int i = 1; i < (argc-1); i+=2) {
+  for (int i = 1; i < (argc-1); ++i) {
     std::string arg_current = argv[i];
     std::string arg_next = argv[i+1];
     if (arg_current == "-startEpoch" || arg_current == "-start" ) { 
-      startEpoch = std::stoi(arg_next); 
+      startEpoch = std::stoi(arg_next);
+      ++i;
     } else if (arg_current == "-stopEpoch" || arg_current == "-stop" ) { 
       stopEpoch = std::stoi(arg_next); 
+      ++i;
     } else if (arg_current == "-batchSize" || arg_current == "-bs" ) { 
       batchSize = std::stoi(arg_next); 
+      ++i;
     } else if (arg_current == "-trainDataDir" || arg_current == "-train" ) { 
       trainDataDir = arg_next; 
+      ++i;
     } else if (arg_current == "-unlabeledDataDir" || arg_current == "-unl" ) { 
       unlabeledDataDir = arg_next; 
+      ++i;
     } else if (arg_current == "-nClasses" || arg_current == "-nc" ) { 
       nClasses = std::stoi(arg_next); 
+      ++i;
     } else if (arg_current == "-exemplarsPerClassPerEpoch" || arg_current == "-epcpe" ) { 
       exemplarsPerClassPerEpoch = std::stoi(arg_next); 
+      ++i;
     } else if (arg_current == "-initialLearningRate" || arg_current == "-ilr" ) { 
       initialLearningRate = std::stof(arg_next); 
+      ++i;
     } else if (arg_current == "-learningRateDecay" || arg_current == "-lrd" ) { 
       learningRateDecay = std::stof(arg_next); 
+      ++i;
     } else if (arg_current == "-validationSetPercentage" || arg_current == "-vsp" ) { 
       validationSetPercentage = std::stof(arg_next); 
+      ++i;
     } else if (arg_current == "-cudaDevice" || arg_current == "-cD" ) { 
       cudaDevice = std::stoi(arg_next); 
+      ++i;
     } else if (arg_current == "-basename" || arg_current == "-bn" ) { 
       baseName = arg_next; 
+      ++i;
     } else {
-      std::cout << "WARNING: arguemnt " << arg_current << " " << arg_next << " is unrecognized!" << std::endl;
+      std::cout << "WARNING: arguemnt " << arg_current << " is unrecognized!" << std::endl;
     }
 }
 
@@ -523,12 +538,8 @@ TODO: add a description of this
 And finally the training loop
 
     epoch: 1
-    /home/jiho/cnn/test_2015-12-17/data minus Validation set subset
-Mistakes:97.8237% NLL:3.82872 MegaMultiplyAdds/sample:12 time:2s
-GigaMultiplyAdds/s:24 rate:1879/s
-    /home/jiho/cnn/test_2015-12-17/data minus Validation set subset
-Mistakes:97.7584% NLL:3.82861 MegaMultiplyAdds/sample:12 time:2s
-GigaMultiplyAdds/s:26 rate:2068/s
+    /home/jiho/cnn/test_2015-12-17/data minus Validation set subset Mistakes:97.8237% NLL:3.82872 MegaMultiplyAdds/sample:12 time:2s GigaMultiplyAdds/s:24 rate:1879/s
+    /home/jiho/cnn/test_2015-12-17/data minus Validation set subset Mistakes:97.7584% NLL:3.82861 MegaMultiplyAdds/sample:12 time:2s GigaMultiplyAdds/s:26 rate:2068/s
     [...]
 
 where a line contains
