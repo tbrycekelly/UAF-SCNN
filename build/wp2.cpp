@@ -248,7 +248,6 @@ int main(int argc, char *argv[]) {
 
   // experiment name (path where weights are stored)
   std::string baseName = "plankton";
-  std::string id = "";
 
   // Validation set percentage
   float validationSetPercentage = 0; // i.e. extract 20% for a validation set
@@ -275,7 +274,7 @@ int main(int argc, char *argv[]) {
     return(0);
   }
 
-  for (int i = 1; i < (argc-1); ++i) {
+  for (int i = 1; i < (argc-1); i+=2) {
     std::string arg_current = argv[i];
     std::string arg_next = argv[i+1];
     if (arg_current == "-startEpoch" || arg_current == "-start" ) { 
