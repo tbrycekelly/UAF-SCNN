@@ -248,6 +248,7 @@ int main(int argc, char *argv[]) {
 
   // experiment name (path where weights are stored)
   std::string baseName = "weights/plankton";
+  std::string id = "";
 
   // Validation set percentage
   float validationSetPercentage = 0; // i.e. extract 20% for a validation set
@@ -269,6 +270,7 @@ int main(int argc, char *argv[]) {
     std::cout << "    -learningRateDecay NUM" << std::endl;
     std::cout << "    -validationSetPercentage NUM" << std::endl;
     std::cout << "    -cudaDevice NUM" << std::endl;
+    std::cout << "    -basename STR" << std::endl;
 
     return(0);
   }
@@ -298,6 +300,8 @@ int main(int argc, char *argv[]) {
       validationSetPercentage = std::stof(arg_next); 
     } else if (arg_current == "-cudaDevice" || arg_current == "-cD" ) { 
       cudaDevice = std::stoi(arg_next); 
+    } else if (arg_current == "-basename" || arg_current == "-bn" ) { 
+      basename = "weights/" + arg_next; 
     } else {
       std::cout << "WARNING: arguemnt " << arg_current << " " << arg_next << " is unrecognized!" << std::endl;
     }
@@ -321,6 +325,7 @@ int main(int argc, char *argv[]) {
     break;
   }
 
+  std::cout << "Basename:                " << basename << std::endl;
   std::cout << "Layers of pooling:       " << nLayers << std::endl;
   std::cout << "Dropout multiplier:      " << dropoutMultiplier << std::endl;
   std::cout << "Start epoch:             " << startEpoch << std::endl;
