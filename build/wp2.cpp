@@ -306,6 +306,11 @@ int main(int argc, char *argv[]) {
     }
 }
 
+
+
+  trainDataDir = "Data/" + baseName + "/train";
+  unlabeledDataDir = "Data/" + baseName + "/test";
+
   //-------------------------------------------------------------------------
   // Options summary
   //-------------------------------------------------------------------------
