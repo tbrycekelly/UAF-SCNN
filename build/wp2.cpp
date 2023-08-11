@@ -247,7 +247,7 @@ int main(int argc, char *argv[]) {
   bool loadImagesIntoMemory = true;
 
   // experiment name (path where weights are stored)
-  std::string baseName = "weights/plankton";
+  std::string baseName = "plankton";
   std::string id = "";
 
   // Validation set percentage
@@ -301,7 +301,7 @@ int main(int argc, char *argv[]) {
     } else if (arg_current == "-cudaDevice" || arg_current == "-cD" ) { 
       cudaDevice = std::stoi(arg_next); 
     } else if (arg_current == "-basename" || arg_current == "-bn" ) { 
-      basename = "weights/" + arg_next; 
+      baseName = arg_next; 
     } else {
       std::cout << "WARNING: arguemnt " << arg_current << " " << arg_next << " is unrecognized!" << std::endl;
     }
@@ -325,7 +325,6 @@ int main(int argc, char *argv[]) {
     break;
   }
 
-  std::cout << "Basename:                " << basename << std::endl;
   std::cout << "Layers of pooling:       " << nLayers << std::endl;
   std::cout << "Dropout multiplier:      " << dropoutMultiplier << std::endl;
   std::cout << "Start epoch:             " << startEpoch << std::endl;
@@ -354,7 +353,7 @@ int main(int argc, char *argv[]) {
     // Load training data and/or count classes
     std::cout << "Loading training set...\n";
     trainSet = OpenCVLabeledDataSet(
-        "Data/plankton/classList",  // path to list of classes
+        "Data/" + baseName + "/classList",  // path to list of classes
         trainDataDir,		            // path to data
         wildcard,                   // wildcard for images
         TRAINBATCH,                 // type of dataset
@@ -384,7 +383,7 @@ int main(int argc, char *argv[]) {
 
   // load weights if continuing a previous run
   if (startEpoch > 0)
-    cnn.loadWeights(baseName, startEpoch);
+    cnn.loadWeights("weights/" + baseName, startEpoch);
 
   // training loop
   for (int epoch = startEpoch; epoch < stopEpoch; epoch++) {
@@ -408,7 +407,7 @@ int main(int argc, char *argv[]) {
     cnn.processDataset(trainSet, batchSize, learningRate, momentum);      
     cnn.processDataset(trainSet, batchSize, learningRate, momentum);
   
-    cnn.saveWeights(baseName, epoch + 1);
+    cnn.saveWeights("weights/" + baseName, epoch + 1);
 
     // Perform validation on a balenced sample of the validation set
     if (validationSetPercentage > 0) {
@@ -428,7 +427,10 @@ int main(int argc, char *argv[]) {
   if (not unlabeledDataDir.empty()) {
     std::cout << "Loading testing set...\n";
     OpenCVUnlabeledDataSet testSet(
-        "Data/plankton/classList", unlabeledDataDir, wildcard, 255,
+        "Data/" + baseName + "/classList",
+        unlabeledDataDir,
+        wildcard,
+        255,
         false,     // no point preloading images during testing
         openCVflag // flag to OpenCV imread() function call
         );
@@ -442,7 +444,7 @@ int main(int argc, char *argv[]) {
         flattened_unlabeled[i] = '-';
     }
 
-    std::string concat_var = "./Data/plankton/" + flattened_unlabeled + "_plankton_predictions.csv"; 
+    std::string concat_var = "Data/" + baseName + "/" + flattened_unlabeled + "_plankton_predictions.csv"; 
     cnn.processDatasetRepeatTest(testSet, batchSize / 2, 24, concat_var);
   }
 }
