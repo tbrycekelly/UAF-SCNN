@@ -188,7 +188,6 @@ Picture *OpenCVPicture::distort(RNG &rng, batchType type) {
 int main(int argc, char *argv[]) {
 
   std::cout << "Starting SCNN V2023.08.11" << std::endl;
-  std::cout << "" << std::endl;
 
   //-------------------------------------------------------------------------
   // Options.
@@ -326,36 +325,36 @@ int main(int argc, char *argv[]) {
   //-------------------------------------------------------------------------
 
   switch (networkType) {
-  case 1:
-    std::cout << "Network type 1 - Ciresan-Schmidhuber-Meier style network" << std::endl;
-    break;
+    case 1:
+      std::cout << "    Network Type 1 - Ciresan-Schmidhuber-Meier style network" << std::endl;
+      break;
 
-  case 2:
-    std::cout << "Network type 2 - VGG style network" << std::endl;
-    break;
+    case 2:
+      std::cout << "    Network Type 2 - VGG style network" << std::endl;
+      break;
 
-  case 3:
-    std::cout << "Network type 3 - fractional max-pooling network" << std::endl;
-    break;
+    case 3:
+      std::cout << "    Network Type 3 - fractional max-pooling network" << std::endl;
+      break;
   }
 
-  std::cout << "Layers of pooling:       " << nLayers << std::endl;
-  std::cout << "Dropout multiplier:      " << dropoutMultiplier << std::endl;
-  std::cout << "Start epoch:             " << startEpoch << std::endl;
-  std::cout << "Stop epoch:              " << stopEpoch << std::endl;
-  std::cout << "Exemplars/class/epoch:   " << exemplarsPerClassPerEpoch << std::endl;
-  std::cout << "Initial learning rate:   " << initialLearningRate << std::endl;
-  std::cout << "Learning rate decay:     " << learningRateDecay << std::endl;
-  std::cout << "Batch size:              " << batchSize << std::endl;
-  std::cout << "Momentum:                " << momentum << std::endl;
-  std::cout << "Area threshold:          " << areaThreshold << std::endl;
-  std::cout << "Training data directory: " << trainDataDir << std::endl;
-  std::cout << "Unlabeled data:          " << unlabeledDataDir << std::endl;
-  std::cout << "Wildcard:                " << wildcard << std::endl;
-  std::cout << "Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
-  std::cout << "Experiment name:         " << baseName << std::endl;
-  std::cout << "Validation set size:     " << validationSetPercentage * 100 << "%" << std::endl;
-  std::cout << "CUDA Device:             " << cudaDevice << std::endl;
+  std::cout << "    Layers of pooling:       " << nLayers << std::endl;
+  std::cout << "    Dropout multiplier:      " << dropoutMultiplier << std::endl;
+  std::cout << "    Start epoch:             " << startEpoch << std::endl;
+  std::cout << "    Stop epoch:              " << stopEpoch << std::endl;
+  std::cout << "    Exemplars/class/epoch:   " << exemplarsPerClassPerEpoch << std::endl;
+  std::cout << "    Initial learning rate:   " << initialLearningRate << std::endl;
+  std::cout << "    Learning rate decay:     " << learningRateDecay << std::endl;
+  std::cout << "    Batch size:              " << batchSize << std::endl;
+  std::cout << "    Momentum:                " << momentum << std::endl;
+  std::cout << "    Area threshold:          " << areaThreshold << std::endl;
+  std::cout << "    Training data directory: " << trainDataDir << std::endl;
+  std::cout << "    Unlabeled data:          " << unlabeledDataDir << std::endl;
+  std::cout << "    Wildcard:                " << wildcard << std::endl;
+  std::cout << "    Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
+  std::cout << "    Experiment name:         " << baseName << std::endl;
+  std::cout << "    Validation set size:     " << validationSetPercentage * 100 << "%" << std::endl;
+  std::cout << "    CUDA Device:             " << cudaDevice << std::endl;
   std::cout << std::endl;
 
   //-------------------------------------------------------------------------
@@ -365,7 +364,7 @@ int main(int argc, char *argv[]) {
 
   if (startEpoch < stopEpoch or nClasses == -1) {
     // Load training data and/or count classes
-    std::cout << "Loading training set...\n";
+    std::cout << "Loading training set." << std::endl;
     trainSet = OpenCVLabeledDataSet(
         "Data/" + baseName + "/classList",  // path to list of classes
         trainDataDir,		            // path to data
@@ -381,7 +380,7 @@ int main(int argc, char *argv[]) {
     nClasses = trainSet.nClasses;
 
     if (validationSetPercentage > 0) {
-      std::cout << "Extracting validation set ...\n";
+      std::cout << "Extracting validation set." << std::endl;
       validationSet = trainSet.extractValidationSet(validationSetPercentage);
       trainSet.summary();
       validationSet.summary();
