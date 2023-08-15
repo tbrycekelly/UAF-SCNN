@@ -430,8 +430,8 @@ int main(int argc, char *argv[]) {
           validationSample, // dataset to predict
           batchSize,        // number of images to feed to the GPU at a time
           3,                // number of repetitions of the prediction
-          baseName + "/validation_predictions.csv", // file name for predictions
-          baseName + "/validation_confusion.csv" // file name for confusion matrix
+          "weights/" + baseName + "/validation_predictions.csv", // file name for predictions
+          "weights/" + baseName + "/validation_confusion.csv" // file name for confusion matrix
           );
     }
   }

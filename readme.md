@@ -56,12 +56,15 @@ Command line arguments for `./scnn`:
     -basename STR   [plankton]
 
 
+Example command line call (taken from an actual segmentation.py log file):
+
+    ./scnn -start 324 -stop 324 -unl /tmp/segment/Camera3_VIPF-306-2022-07-21-22-36-51.647 -cD 1
 
 #### Training a Neural Network
 
 Copy the training dataset into /opt/UAF-SCNN/Data/plankton/train so that images are in subfolders by category, e.g.: /opt/UAF-SCNN/Data/plankton/train/detritus/iamge.jpg
 
-Run classList.sh
+Run `classList.sh`
 
     cd /opt/UAF-SCNN/Data/plankton
     ./classList.sh
