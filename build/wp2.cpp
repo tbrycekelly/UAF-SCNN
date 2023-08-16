@@ -43,10 +43,8 @@ public:
                                  // An increasing amount of dropout is used
                                  // rising up through the network from 0 to
                                  // dropoutMultiplier.
-      int cudaDevice =
-          -1 // PCI Bus ID for the CUDA device to use, -1 for the default device
-      )
-      : SparseConvNet(2, nInputFeatures, nClasses, cudaDevice) {
+      int cudaDevice = -1 // PCI Bus ID for the CUDA device to use, -1 for the default device
+      ) : SparseConvNet(2, nInputFeatures, nClasses, cudaDevice) {
 
     switch (networkType) {
 
