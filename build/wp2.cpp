@@ -406,10 +406,7 @@ int main(int argc, char *argv[]) {
     // Decrease afterwards to fine tune the network
     // stopEpoch should be roughly 4 / learningRateDecay
     float learningRate = initialLearningRate * exp(-learningRateDecay * epoch);
-
-    // train for one epoch: nClasses * exemplarsPerClassPerEpoch images
-    // auto trainSample = trainSet.balancedSample(exemplarsPerClassPerEpoch);
-
+    
     cnn.processDataset(
         trainSet, // subset of images to train on
         batchSize,   // number of images to feed to the GPU at a time

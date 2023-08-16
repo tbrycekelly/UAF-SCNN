@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=--std=c++11 -O3
-#NVCC=$(which nvcc)
-NVCC=/usr/local/cuda/bin/nvcc
+NVCC=$(which nvcc)
+#NVCC=/usr/local/cuda/bin/nvcc
 #NVCCFLAGS=--std=c++11 -arch sm_20 -O3
 NVCCFLAGS=--std=c++11 -O3 -arch sm_37 -Wno-deprecated-gpu-targets
 
