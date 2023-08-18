@@ -332,7 +332,6 @@ int main(int argc, char *argv[]) {
   std::cout << "    Dropout multiplier:      " << dropoutMultiplier << std::endl;
   std::cout << "    Start epoch:             " << startEpoch << std::endl;
   std::cout << "    Stop epoch:              " << stopEpoch << std::endl;
-  std::cout << "    Exemplars/class/epoch:   " << exemplarsPerClassPerEpoch << std::endl;
   std::cout << "    Initial learning rate:   " << initialLearningRate << std::endl;
   std::cout << "    Learning rate decay:     " << learningRateDecay << std::endl;
   std::cout << "    Batch size:              " << batchSize << std::endl;
