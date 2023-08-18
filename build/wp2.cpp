@@ -207,7 +207,6 @@ int main(int argc, char *argv[]) {
 
   int startEpoch = 400;
   int stopEpoch = 400;
-  int exemplarsPerClassPerEpoch = 1000;
   float initialLearningRate = 0.003;
   float learningRateDecay = 0.01;
 
@@ -224,17 +223,14 @@ int main(int argc, char *argv[]) {
   areaThreshold = 4000; // global variable
 
   // Path to data directory.
-  std::string trainDataDir = "Data/plankton/train";
-  // There should be a file trainDataDir + "/classList" containing a list of
-  // the classes, one per line, and a directory trainDataDir + className for
+  std::string projectDir = "";
+  // There should be a file projectDir + "/classList" containing a list of
+  // the classes, one per line, and a directory projectDir + className for
   // each class.
 
   // Unlabeled data to classify. Empty if just training.
-  std::string unlabeledDataDir = "Data/plankton/test";
-
-  std::string wildcard = "*.*";
-  // Look for files in trainDataDir + "/" + classname + "/" + wildcard
-  // and unlabeledDataDir + "/" + classname + "/" + wildcard
+  std::string unlabeledDataDir = "";
+  std::string wildcard = "*.png";
 
   // Number of classes (-1 to calculate from classList file)
   int nClasses = -1;
@@ -261,10 +257,9 @@ int main(int argc, char *argv[]) {
     std::cout << "    -start NUM" << std::endl;
     std::cout << "    -stop NUM" << std::endl;
     std::cout << "    -batchSize NUM" << std::endl;
-    std::cout << "    -train DIR" << std::endl;
+    std::cout << "    -project DIR" << std::endl;
     std::cout << "    -unl DIR" << std::endl;
     std::cout << "    -nClasses NUM" << std::endl;
-    std::cout << "    -exemplarsPerClassPerEpoch NUM" << std::endl;
     std::cout << "    -initialLearningRate NUM" << std::endl;
     std::cout << "    -learningRateDecay NUM" << std::endl;
     std::cout << "    -validationSetPercentage NUM" << std::endl;
@@ -286,17 +281,14 @@ int main(int argc, char *argv[]) {
     } else if (arg_current == "-batchSize" || arg_current == "-bs" ) { 
       batchSize = std::stoi(arg_next); 
       ++i;
-    } else if (arg_current == "-trainDataDir" || arg_current == "-train" ) { 
-      trainDataDir = arg_next; 
+    } else if (arg_current == "-projectDir" || arg_current == "-project" ) { 
+      projectDir = arg_next; 
       ++i;
     } else if (arg_current == "-unlabeledDataDir" || arg_current == "-unl" ) { 
       unlabeledDataDir = arg_next; 
       ++i;
     } else if (arg_current == "-nClasses" || arg_current == "-nc" ) { 
       nClasses = std::stoi(arg_next); 
-      ++i;
-    } else if (arg_current == "-exemplarsPerClassPerEpoch" || arg_current == "-epcpe" ) { 
-      exemplarsPerClassPerEpoch = std::stoi(arg_next); 
       ++i;
     } else if (arg_current == "-initialLearningRate" || arg_current == "-ilr" ) { 
       initialLearningRate = std::stof(arg_next); 
@@ -346,7 +338,7 @@ int main(int argc, char *argv[]) {
   std::cout << "    Batch size:              " << batchSize << std::endl;
   std::cout << "    Momentum:                " << momentum << std::endl;
   std::cout << "    Area threshold:          " << areaThreshold << std::endl;
-  std::cout << "    Training data directory: " << trainDataDir << std::endl;
+  std::cout << "    Project directory:       " << projectDir << std::endl;
   std::cout << "    Unlabeled data:          " << unlabeledDataDir << std::endl;
   std::cout << "    Wildcard:                " << wildcard << std::endl;
   std::cout << "    Cache training images:   " << (loadImagesIntoMemory ? "true" : "false") << std::endl;
@@ -364,8 +356,8 @@ int main(int argc, char *argv[]) {
     // Load training data and/or count classes
     std::cout << "Loading training set." << std::endl;
     trainSet = OpenCVLabeledDataSet(
-        "Data/" + baseName + "/classList",  // path to list of classes
-        trainDataDir,		            // path to data
+        projectDir + "/Data/classList",  // path to list of classes
+        projectDir + "/Data",		            // path to data
         wildcard,                   // wildcard for images
         TRAINBATCH,                 // type of dataset
         255,                        // background grey level (tolerance +/- 2 set in OpenCVPicture.cpp)
@@ -394,7 +386,7 @@ int main(int argc, char *argv[]) {
 
   // load weights if continuing a previous run
   if (startEpoch > 0)
-    cnn.loadWeights("weights/" + baseName, startEpoch);
+    cnn.loadWeights(projectDir + "/weights/" + baseName, startEpoch);
 
   // training loop
   for (int epoch = startEpoch; epoch < stopEpoch; epoch++) {
@@ -410,12 +402,13 @@ int main(int argc, char *argv[]) {
     cnn.processDataset(
         trainSet, // subset of images to train on
         batchSize,   // number of images to feed to the GPU at a time
-        learningRate, momentum);
+        learningRate,
+        momentum);
       
     cnn.processDataset(trainSet, batchSize, learningRate, momentum);      
     cnn.processDataset(trainSet, batchSize, learningRate, momentum);
   
-    cnn.saveWeights("weights/" + baseName, epoch + 1);
+    cnn.saveWeights(projectDir + "/weights/" + baseName, epoch + 1);
 
     // Perform validation on a balenced sample of the validation set
     if (validationSetPercentage > 0) {
@@ -425,8 +418,8 @@ int main(int argc, char *argv[]) {
           validationSample, // dataset to predict
           batchSize,        // number of images to feed to the GPU at a time
           3,                // number of repetitions of the prediction
-          "weights/" + baseName + "/validation_predictions.csv", // file name for predictions
-          "weights/" + baseName + "/validation_confusion.csv" // file name for confusion matrix
+          projectDir + "/weights/" + baseName + "/validation_predictions.csv", // file name for predictions
+          projectDir + "/weights/" + baseName + "/validation_confusion.csv" // file name for confusion matrix
           );
     }
   }
@@ -435,7 +428,7 @@ int main(int argc, char *argv[]) {
   if (not unlabeledDataDir.empty()) {
     std::cout << "Loading testing set...\n";
     OpenCVUnlabeledDataSet testSet(
-        "Data/" + baseName + "/classList",
+        projectDir + "/Data/classList",
         unlabeledDataDir,
         wildcard,
         255,
@@ -452,8 +445,12 @@ int main(int argc, char *argv[]) {
         flattened_unlabeled[i] = '-';
     }
 
-    std::string concat_var = "Data/" + baseName + "/" + flattened_unlabeled + "_plankton_predictions.csv"; 
-    cnn.processDatasetRepeatTest(testSet, batchSize / 2, 24, concat_var);
+    cnn.processDatasetRepeatTest(
+        testSet, // dataset to predict
+        batchSize / 2, // number of images to feed to the GPU at a time
+        24, // number of repetitions of the prediction
+        projectDir + "/Data/" + flattened_unlabeled + "_plankton_predictions,csv" //file name for predictions
+      );
   }
 }
 
