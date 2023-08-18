@@ -417,8 +417,8 @@ int main(int argc, char *argv[]) {
           validationSample, // dataset to predict
           batchSize,        // number of images to feed to the GPU at a time
           3,                // number of repetitions of the prediction
-          projectDir + "/weights/" + baseName + "/validation_predictions.csv", // file name for predictions
-          projectDir + "/weights/" + baseName + "/validation_confusion.csv" // file name for confusion matrix
+          projectDir + "/weights/" + baseName + " validation predictions.csv", // file name for predictions
+          projectDir + "/weights/" + baseName + " validation confusion.csv" // file name for confusion matrix
           );
     }
   }
@@ -448,7 +448,7 @@ int main(int argc, char *argv[]) {
         testSet, // dataset to predict
         batchSize / 2, // number of images to feed to the GPU at a time
         24, // number of repetitions of the prediction
-        projectDir + "/Data/" + flattened_unlabeled + "_plankton_predictions,csv" //file name for predictions
+        projectDir + "/Data/" + flattened_unlabeled + "_plankton_predictions.csv" //file name for predictions
       );
   }
 }
