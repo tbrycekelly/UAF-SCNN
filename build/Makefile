@@ -1,14 +1,14 @@
 CC=g++
 CFLAGS=--std=c++11 -O3
-NVCC=$(which nvcc)
-#NVCC=/usr/local/cuda/bin/nvcc
+#NVCC=$(which nvcc)
+NVCC=/usr/local/cuda/bin/nvcc
 #NVCCFLAGS=--std=c++11 -arch sm_20 -O3
 NVCCFLAGS=--std=c++11 -O3 -arch sm_37 -Wno-deprecated-gpu-targets
 
 OBJ=BatchProducer.o ConvolutionalLayer.o ConvolutionalTriangularLayer.o IndexLearnerLayer.o MaxPoolingLayer.o MaxPoolingTriangularLayer.o NetworkArchitectures.o NetworkInNetworkLayer.o NetworkInNetworkPReLULayer.o Picture.o Regions.o Rng.o SigmoidLayer.o SoftmaxClassifier.o SparseConvNet.o SparseConvNetCUDA.o SpatiallySparseBatch.o SpatiallySparseBatchInterface.o SpatiallySparseDataset.o SpatiallySparseLayer.o TerminalPoolingLayer.o readImageToMat.o types.o utilities.o vectorCUDA.o ReallyConvolutionalLayer.o vectorHash.o
 OBJCV=$(OBJ) OpenCVPicture.o SpatiallySparseDatasetOpenCV.o
 OBJCVT=$(OBJ) OpenCVTriangularPicture.o SpatiallySparseDatasetOpenCV.o
-LIBS=$(pkg-config opencv --cflags --libs) -lcublas
+LIBS=-I/usr/local/include/opencv -I/usr/local/include -L/usr/local/lib -lopencv_stitching -lopencv_superres -lopencv_videostab -lopencv_aruco -lopencv_bgsegm -lopencv_bioinspired -lopencv_ccalib -lopencv_dnn_objdetect -lopencv_dpm -lopencv_highgui -lopencv_videoio -lopencv_face -lopencv_freetype -lopencv_fuzzy -lopencv_hfs -lopencv_img_hash -lopencv_line_descriptor -lopencv_optflow -lopencv_reg -lopencv_rgbd -lopencv_saliency -lopencv_stereo -lopencv_structured_light -lopencv_phase_unwrapping -lopencv_surface_matching -lopencv_tracking -lopencv_datasets -lopencv_text -lopencv_dnn -lopencv_plot -lopencv_xfeatures2d -lopencv_shape -lopencv_video -lopencv_ml -lopencv_ximgproc -lopencv_xobjdetect -lopencv_objdetect -lopencv_calib3d -lopencv_imgcodecs -lopencv_features2d -lopencv_flann -lopencv_xphoto -lopencv_photo -lopencv_imgproc -lopencv_core -lcublas
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
