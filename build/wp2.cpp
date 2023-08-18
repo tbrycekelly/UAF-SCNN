@@ -230,7 +230,7 @@ int main(int argc, char *argv[]) {
 
   // Unlabeled data to classify. Empty if just training.
   std::string unlabeledDataDir = "";
-  std::string wildcard = "*.png";
+  std::string wildcard = "*.*";
 
   // Number of classes (-1 to calculate from classList file)
   int nClasses = -1;
