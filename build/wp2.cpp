@@ -197,15 +197,15 @@ int main(int argc, char *argv[]) {
   float dropoutMultiplier = 0.375;
 
   // address of CUDA card (PCI bus id)
-  // use nvidia-smi to get it; -1 for default GPU
-  int cudaDevice = -1;
+  // use nvidia-smi to get it
+  int cudaDevice = 0;
 
   // Start and stop training epochs
   // Starting at epoch > 0 loads the weights from that epoch and continues
   // training until stop epoch
   // If startEpoch == stopEpoch then just classify the unlabeledDataset
 
-  int startEpoch = 400;
+  int startEpoch = 0;
   int stopEpoch = 400;
   float initialLearningRate = 0.003;
   float learningRateDecay = 0.01;
@@ -246,7 +246,7 @@ int main(int argc, char *argv[]) {
   std::string baseName = "plankton";
 
   // Validation set percentage
-  float validationSetPercentage = 0; // i.e. extract 20% for a validation set
+  float validationSetPercentage = 0.2; // i.e. extract 20% for a validation set
   // Reserves a portion of the training set for monitoring training.
   // For best results, first run with a 20% validation set, and then when
   // you are happy with the other settings, re-train with
