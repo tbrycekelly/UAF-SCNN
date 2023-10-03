@@ -355,8 +355,8 @@ int main(int argc, char *argv[]) {
     // Load training data and/or count classes
     std::cout << "Loading training set." << std::endl;
     trainSet = OpenCVLabeledDataSet(
-        projectDir + "/Data/classList",  // path to list of classes
-        projectDir + "/Data",		            // path to data
+        projectDir + "/data/classList",  // path to list of classes
+        projectDir + "/data",		            // path to data
         wildcard,                   // wildcard for images
         TRAINBATCH,                 // type of dataset
         255,                        // background grey level (tolerance +/- 2 set in OpenCVPicture.cpp)
