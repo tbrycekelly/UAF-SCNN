@@ -427,7 +427,7 @@ int main(int argc, char *argv[]) {
   if (not unlabeledDataDir.empty()) {
     std::cout << "Loading testing set...\n";
     OpenCVUnlabeledDataSet testSet(
-        projectDir + "/Data/classList",
+        projectDir + "/data/classList",
         unlabeledDataDir,
         wildcard,
         255,
@@ -448,7 +448,7 @@ int main(int argc, char *argv[]) {
         testSet, // dataset to predict
         batchSize / 2, // number of images to feed to the GPU at a time
         24, // number of repetitions of the prediction
-        projectDir + "/Data/" + flattened_unlabeled + "_plankton_predictions.csv" //file name for predictions
+        projectDir + "/data/" + flattened_unlabeled + "_plankton_predictions.csv" //file name for predictions
       );
   }
 }
