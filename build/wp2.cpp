@@ -223,7 +223,7 @@ int main(int argc, char *argv[]) {
   areaThreshold = 4000; // global variable
 
   // Path to data directory.
-  std::string projectDir = "";
+  std::string projectDir = ".";
   // There should be a file projectDir + "/classList" containing a list of
   // the classes, one per line, and a directory projectDir + className for
   // each class.
